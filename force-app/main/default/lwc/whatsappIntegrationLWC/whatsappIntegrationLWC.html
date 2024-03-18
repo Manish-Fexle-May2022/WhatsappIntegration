@@ -1,0 +1,90 @@
+<template>
+    <lightning-card icon-name="standard:messaging_conversation" title="WhatsApp Integration With Salesforce">
+        <div class="slds-m-around_medium">
+            <div class="slds-form slds-form_stacked">
+                <!-- Radio buttons for Autofill and Manual input -->
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <div class="radio-container">
+                            <label class="slds-radio">
+                                <input type="radio" name="inputType" value="autofill" onchange={handleRadioChange} checked={showAutofillInput}>
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">Autofill Number</span>
+                            </label>
+                            <label class="slds-radio">
+                                <input type="radio" name="inputType" value="manual" onchange={handleRadioChange} checked={showManualInput}>
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">Manually Fill Number</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Input -->
+                <template lwc:if={showManualInput}>
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control" style="width: 135px;">
+                            <lightning-input type="tel" label="Enter Phone Number" placeholder="Phone Number" value={phoneNumber} onchange={handleManualPhoneNumberChange} variant="label-stacked"></lightning-input>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Autofill Input -->
+                <template lwc:if={showAutofillInput}>
+                    <div class="slds-form-element small-input" style="width: 145px;">
+                        <lightning-combobox
+                            label="Select Phone Number"
+                            value={selectedAutofillPhone}
+                            options={phoneOptions}
+                            onchange={handleAutofillPhoneChange}
+                        ></lightning-combobox>
+                    </div>
+                </template>
+
+                <!-- Message Field -->
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-textarea label="Message" value={message} onchange={handleMessageChange}></lightning-textarea>
+                    </div>
+                </div>
+
+                <!-- File Upload Section -->
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-file-upload
+                            record-id={recordId}
+                            label  ="Attach Documents And Images"
+                            accept=".jpg, .jpeg, .png, .pdf"
+                            name="fileUploader"
+                            class="file-selector-large"
+                            title="The tooltip for the file uploader"
+                            onuploadfinished={handleUploadFinished}
+                            multiple
+                        ></lightning-file-upload>
+                        <span class="slds-m-left_small">{uploadedFiles} Files Uploaded</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Send Message Button -->
+            <div class="slds-grid slds-m-top_medium slds-text-align_center">
+                <div class="slds-col">
+                    <lightning-button variant="brand" label="Send Message" onclick={sendMessage}></lightning-button>
+                </div>
+            </div>
+        </div>
+
+         <!-- messageHistory -->
+        <div class="slds-m-around_medium">
+            <div class="slds-m-top_medium slds-text-align_center">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium"><b>Message History</b></h2>
+                <lightning-datatable
+                    key-field="id"
+                    data={messageHistory}
+                    columns={columns}
+                    hide-checkbox-column
+                ></lightning-datatable>
+            </div>
+        </div>
+    </lightning-card>
+</template>
