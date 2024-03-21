@@ -32,8 +32,7 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response, 'Response should not be null');
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id, MessageType__c, Message__c 
-                                                     FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id, MessageType__c, Message__c FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size(), 'Expected one history record to be inserted');
         
         Whats_App_History__c insertedRecord = historyRecords[0];
@@ -58,8 +57,7 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response);
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c 
-                                                     FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size());
         
         Whats_App_History__c insertedRecord = historyRecords[0];
@@ -86,8 +84,7 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response);
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c 
-                                                     FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size());
         
         Whats_App_History__c insertedRecord = historyRecords[0];
@@ -95,6 +92,35 @@ private class WhatsAppIntegrationControllerTest {
         System.assertEquals(mediaLink, insertedRecord.MediaLink__c);
         System.assertEquals(mediaCaption, insertedRecord.MediaCaption__c);
     }
+    
+    // Test sending video message
+    @isTest
+    static void testSendVideoToWhatsApp() 
+    {    
+        String phoneNumber = '1234567890';
+        String message = 'video';
+        String messageType = 'video';
+        String mediaLink = 'https://example.com/document.mp4';
+        String mediaCaption = 'video';
+        
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+        
+        Test.startTest();
+        String response = WhatsAppIntegrationController.sendToWhatsApp(phoneNumber, message, messageType, mediaLink, mediaCaption);
+        Test.stopTest();
+        
+        System.assertNotEquals(null, response);
+        
+        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c FROM Whats_App_History__c];
+        System.assertEquals(1, historyRecords.size());
+        
+        Whats_App_History__c insertedRecord = historyRecords[0];
+        System.assertEquals(messageType, insertedRecord.MessageType__c);
+        System.assertEquals(mediaLink, insertedRecord.MediaLink__c);
+        System.assertEquals(mediaCaption, insertedRecord.MediaCaption__c);
+    }
+    
+    
     
     // Test getting public URL
     @isTest
