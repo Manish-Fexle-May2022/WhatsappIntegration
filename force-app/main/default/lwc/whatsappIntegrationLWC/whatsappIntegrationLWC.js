@@ -115,15 +115,26 @@ export default class RecordPageLWC extends lwcConstant {
         this.uploadedFiles = event.detail.files.length;
         this.cvId = event.detail.files[0].contentVersionId;
         this.type = event.detail.files[0].mimeType;
+        console.log('this.type',this.type);
         const toastMessage = `${this.uploadedFiles} File(s) uploaded successfully`;
         this.showToast('SUCCESS', toastMessage, 'success');
     }
 
     async processMedia() {
         const data = await getPublicUrl({ cvId: this.cvId });
-        const messageType = this.type === this.CONSTANT.APPLICATION_PDF ? this.CONSTANT.DOCUMENT : this.CONSTANT.IMAGE;
+        let messageType;
+    
+        if (this.type === this.CONSTANT.APPLICATION_PDF) {
+            messageType = this.CONSTANT.DOCUMENT;
+        } else if (this.type === this.CONSTANT.VIDEO_TYPE_MP4) {
+            messageType = this.CONSTANT.VIDEO;
+        } else {
+            messageType = this.CONSTANT.IMAGE;
+        }
+    
         this.sendToWhatsApp(messageType, this.message, data);
     }
+    
 
     sendMessage() {
         console.log('Calling sendMessage method...');

@@ -35,6 +35,9 @@ public with sharing class WhatsAppIntegrationController
         } else if (messageType == 'document') {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "document", "document": {"link": "' + mediaLink + '", "caption": "' + mediaCaption + '", "filename": "' + message + '"}}';
             system.debug('Payload: '+ payload);
+        } else {
+            payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "video", "video": {"link":"' + mediaLink + '"}}';
+            system.debug('Payload: '+ payload);
         }
         
         // Make the HTTP callout to the WhatsApp API
