@@ -46,9 +46,7 @@ export default class RecordPageLWC extends lwcConstant {
     }
 
     autoFillPhoneNumber() {
-        queryPhoneFields({
-            record_Id: this.recordId
-        })
+        queryPhoneFields({record_Id: this.recordId})
         .then(result => {
             if (result && result.phoneFields) {
                 const nonEmptyFields = result.phoneFields.filter(field => field.fieldValue !== undefined && field.fieldValue !== null && field.fieldValue !== '');

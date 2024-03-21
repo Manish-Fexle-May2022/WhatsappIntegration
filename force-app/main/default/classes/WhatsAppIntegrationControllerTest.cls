@@ -32,7 +32,8 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response, 'Response should not be null');
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id, MessageType__c, Message__c FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id, MessageType__c, Message__c 
+                                                     FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size(), 'Expected one history record to be inserted');
         
         Whats_App_History__c insertedRecord = historyRecords[0];
@@ -57,7 +58,8 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response);
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c 
+                                                     FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size());
         
         Whats_App_History__c insertedRecord = historyRecords[0];
@@ -84,7 +86,8 @@ private class WhatsAppIntegrationControllerTest {
         
         System.assertNotEquals(null, response);
         
-        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c FROM Whats_App_History__c];
+        List<Whats_App_History__c> historyRecords = [SELECT Id,MessageType__c, Message__c, MediaLink__c, MediaCaption__c 
+                                                     FROM Whats_App_History__c];
         System.assertEquals(1, historyRecords.size());
         
         Whats_App_History__c insertedRecord = historyRecords[0];

@@ -23,6 +23,7 @@ public with sharing class WhatsAppIntegrationController
     @AuraEnabled(cacheable=true)
     public static String sendToWhatsApp(String phoneNumber, String message, String messageType, String mediaLink, String mediaCaption) 
     {
+        String permanentAccessToken = System.Label.WhatsApp_Permanent_AccessToken;
         // Create the JSON payload based on the message type
         String payload = '';
         if (messageType == 'text') {
@@ -41,8 +42,7 @@ public with sharing class WhatsAppIntegrationController
         req.setEndpoint(WhatsAppIntegrationConstant.API_URL);
         req.setMethod('POST');
         req.setHeader('Content-Type', 'application/json');
-        req.setHeader('Authorization', 'Bearer '+ WhatsAppIntegrationConstant.SECURITY_ACCESS_TOKEN);
-        
+        req.setHeader('Authorization', 'Bearer '+ permanentAccessToken);
         req.setBody(payload);
         
         Http http = new Http();
@@ -99,7 +99,9 @@ public with sharing class WhatsAppIntegrationController
     public static String getPublicUrl(Id cvId) 
     { 
         /* Getting ContentVersion file  */
-        ContentVersion cv = [SELECT Id, Title FROM ContentVersion WHERE Id =: cvId];
+        ContentVersion cv = [SELECT Id, Title 
+                            FROM ContentVersion 
+                            WHERE Id =: cvId];
         
         /* Creating ContentDistribution record */
         ContentDistribution conDis = new ContentDistribution();
@@ -113,7 +115,9 @@ public with sharing class WhatsAppIntegrationController
         insert conDis;
         System.debug('conDis--'+conDis);
         /* Query ContentDownloadUrl to retrieve the public URL */
-        conDis = [SELECT Id,ContentDownloadUrl FROM ContentDistribution WHERE Id = :conDis.Id];
+        conDis = [SELECT Id,ContentDownloadUrl 
+                  FROM ContentDistribution 
+                  WHERE Id = :conDis.Id];
         System.debug('conDis.ContentDownloadUrl--'+conDis.ContentDownloadUrl);
         /* Returning  the public URL */
         String url = conDis.ContentDownloadUrl;
