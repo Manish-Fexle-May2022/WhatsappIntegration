@@ -26,13 +26,13 @@ public with sharing class WhatsAppIntegrationController
         String permanentAccessToken = System.Label.WhatsApp_Permanent_AccessToken;
         // Create the JSON payload based on the message type
         String payload = '';
-        if (messageType == 'text') {
+        if (messageType == WhatsAppIntegrationConstant.TEXT) {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "text", "text": { "preview_url": false, "body": "' + message +'" }}';
             system.debug('Payload: '+ payload);
-        } else if (messageType == 'image') {
+        } else if (messageType == WhatsAppIntegrationConstant.IMAGE) {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "image", "image": {"link":"' + mediaLink + '"}}';
             system.debug('Payload: '+ payload);
-        } else if (messageType == 'document') {
+        } else if (messageType == WhatsAppIntegrationConstant.IMAGE) {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "document", "document": {"link": "' + mediaLink + '", "caption": "' + mediaCaption + '", "filename": "' + message + '"}}';
             system.debug('Payload: '+ payload);
         } else {
@@ -43,9 +43,9 @@ public with sharing class WhatsAppIntegrationController
         // Make the HTTP callout to the WhatsApp API
         HttpRequest req = new HttpRequest();
         req.setEndpoint(WhatsAppIntegrationConstant.API_URL);
-        req.setMethod('POST');
-        req.setHeader('Content-Type', 'application/json');
-        req.setHeader('Authorization', 'Bearer '+ permanentAccessToken);
+        req.setMethod(WhatsAppIntegrationConstant.POST_METHOD);
+        req.setHeader(WhatsAppIntegrationConstant.CONTENT_TYPE, WhatsAppIntegrationConstant.APPLICATION_JSON);
+        req.setHeader(WhatsAppIntegrationConstant.AUTHORIZATION, WhatsAppIntegrationConstant.BEARER + permanentAccessToken);
         req.setBody(payload);
         
         Http http = new Http();
