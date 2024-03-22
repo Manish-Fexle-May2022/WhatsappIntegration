@@ -32,10 +32,11 @@ public with sharing class WhatsAppIntegrationController
         } else if (messageType == WhatsAppIntegrationConstant.IMAGE) {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "image", "image": {"link":"' + mediaLink + '"}}';
             system.debug('Payload: '+ payload);
-        } else if (messageType == WhatsAppIntegrationConstant.IMAGE) {
+        } else if (messageType == WhatsAppIntegrationConstant.DOCUMENT) {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "document", "document": {"link": "' + mediaLink + '", "caption": "' + mediaCaption + '", "filename": "' + message + '"}}';
             system.debug('Payload: '+ payload);
-        } else {
+        }
+         else {
             payload = '{"messaging_product": "whatsapp", "to": "' + phoneNumber + '", "type": "video", "video": {"link":"' + mediaLink + '"}}';
             system.debug('Payload: '+ payload);
         }
