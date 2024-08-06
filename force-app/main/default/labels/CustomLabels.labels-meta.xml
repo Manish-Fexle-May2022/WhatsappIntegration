@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>WHATAPPACCESSTOKEN</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>WHATSAPPACCESSTOKEN</shortDescription>
+        <value>EAATcXHZAUEJQBO9IZCZB9jTHtI7P4m5C0QAoTfgZC1f0zbReqZBDmjUy2ZAwV19y53PrUaPqMT9dHKFMFQ6rG7xI3dG4koSofpkr8cDPAEMEQ9zZB0AQ46pkkiZBUMu24ZAtisGZCQJQ5ZBCqAkiMQVkNHwoNyyMZBhMUm36HOM86GvnjWmj8MZAE9gZCWUvoyRmXrfTHPNPyqYhkYhooQNEvfcuBEcjhXu8XfkyxgvTUnCTEZD</value>
+    </labels>
+    <labels>
+        <fullName>WhatsApp_Permanent_AccessToken</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>WhatsApp Permanent AccessToken</shortDescription>
+        <value>EAATcXHZAUEJQBO7nZBidw63TDujaXMTXYyrDJTBUJt0hthTE6bVtErtKffrZB6GUmzSpvGckZCWYO4ksTmDIV2fgZB1qBrY4Os7Fq402nHoZCtn3dDxJYAXlnUxoyglTlcuilMHYpFjCZAbub4sxctbGHlNbHlZAoT9GZCbBZBw2zBDKQvtv4leZBZCSplfOGM6ZCTccN</value>
+    </labels>
+</CustomLabels>
