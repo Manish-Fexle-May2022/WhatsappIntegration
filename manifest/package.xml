@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>*</members>
-        <name>ApexClass</name>
+<types>
+    <members>Whats_App_History__c.MediaCaption__c</members>
+    <members>Whats_App_History__c.MediaLink__c</members>
+    <members>Whats_App_History__c.MessageType__c</members>
+    <members>Whats_App_History__c.Message__c</members>
+    <members>Whats_App_History__c.PhoneNumber__c</members>
+    <members>Whats_App_History__c.Timestamp__c</members>
+    <name>CustomField</name>
+</types>
+<types>
+    <members>Whats_App_History__c</members>
+    <name>CustomObject</name>
+</types>
+<types>
+        <members>WHATAPPACCESSTOKEN</members>
+        <members>WhatsApp_Permanent_AccessToken</members>
+        <name>CustomLabel</name>
     </types>
-    <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <version>59.0</version>
+<types>
+    <members>WhatsAppIntegrationConstant</members>
+    <members>WhatsAppIntegrationController</members>
+    <members>WhatsAppIntegrationControllerTest</members>
+    <name>ApexClass</name>
+</types>
+<types>
+    <members>lwcConstant</members>
+    <members>whatsappIntegrationLWC</members>
+    <name>LightningComponentBundle</name>
+</types>
+<version>61.0</version>
 </Package>
